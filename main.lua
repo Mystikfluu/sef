@@ -51,6 +51,24 @@ getfenv().godmodecon = game:GetService("RunService").RenderStepped:Connect(funct
   game.ReplicatedStorage.Heal:FireServer()
   end
 end)
+if(getfenv().charcon) then
+  getfenv().charcon:Disconnect()
+end
+if(getfenv().humcon) then
+  getfenv().humcon:Disconnect()
+end
+getfenv().humcon = game.Players.LocalPlayer.Character.Humanoid.Changed:Connect(function()
+  if(getfenv().godmode) then
+  game.ReplicatedStorage.Heal:FireServer()
+  end
+end)
+getfenv().charcon = game.Players.LocalPlayer.CharacterAdded:Connect(function(char)
+getfenv().humcon = char.Humanoid.Changed:Connect(function()
+  if(getfenv().godmode) then
+  game.ReplicatedStorage.Heal:FireServer()
+  end
+end)
+end)
 
 
 spawn(function()
