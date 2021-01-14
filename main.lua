@@ -1,17 +1,17 @@
-if(_G.toggle == nil or _G.toggle == true) then _G.toggle = false wait(0.1) end
-_G.toggle = true
-if(_G.gui == true or _G.gui == nil) then
+if(getfenv().toggle == nil or getfenv().toggle == true) then getfenv().toggle = false wait(0.1) end
+getfenv().toggle = true
+if(getfenv().gui == true or getfenv().gui == nil) then
   local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Mystikfluu/uilib/master/uilib.lua"))()
   local w = library:CreateWindow("Sword Effect Simulator")
   local main = w:CreateFolder("Main")
   main:Toggle("godmode", function(value)
-    _G.godmode = value
+    getfenv().godmode = value
   end)
   main:Toggle("Grind Power", function(value)
-    _G.grind = value
+    getfenv().grind = value
   end)
   main:Box("Power Thingy", "int", function(value)
-    _G.count = value or 8
+    getfenv().count = value or 8
   end)
 
   main:Box("Effect name", "string", function(value)
@@ -31,7 +31,7 @@ main:Button("Kill ALL you can kill(not yet:tm:)", function()
 print("never :tm:")
 end)
 main:Button("Kill GUI", function()
-_G.toggle = false
+getfenv().toggle = false
 spawn(function()
 if(game.CoreGui:FindFirstChild("uiui") ~= nil) then game.CoreGui.uiui:Destroy() end
 if(game.CoreGui:FindFirstChild("uilibrary") ~= nil) then game.CoreGui.uilibrary:Destroy() end
@@ -47,18 +47,18 @@ if(getfenv().godmodecon) then
   getfenv().godmodecon:Disconnect()
 end
 getfenv().godmodecon = game:GetService("RunService").RenderStepped:Connect(function()
-  if(_G.godmode) then
+  if(getfenv().godmode) then
   game.ReplicatedStorage.Heal:FireServer()
   end
 end)
 
 
 spawn(function()
-while wait() and _G.toggle do
+while wait() and getfenv().toggle do
 spawn(function()
-_G.count = _G.count or 8
+getfenv().count = getfenv().count or 8
 
-if(_G.grind) then
+if(getfenv().grind) then
 local lp = game:GetService("Players").LocalPlayer
 local chars = lp.Character
 local tool = chars:FindFirstChild("sword") or lp.Backpack:FindFirstChild("sword")
@@ -70,7 +70,7 @@ if(tool.Handle:FindFirstChild("up")) then
     repeat
       RE:FireServer()
       a = a + 1
-    until a >= _G.count
+    until a >= getfenv().count
   end
 end
 end
