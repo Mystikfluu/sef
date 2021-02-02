@@ -4,7 +4,7 @@ if(getfenv().gui == true or getfenv().gui == nil) then
   local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Mystikfluu/uilib/master/uilib.lua"))()
   local w = library:CreateWindow("Sword Effect Simulator")
   local main = w:CreateFolder("Main")
-  main:Toggle("godmode", function(value)
+  main:Toggle("Instant Heal (nearly godmode)", function(value)
     getfenv().godmode = value
   end)
   main:Toggle("Grind Power", function(value)
@@ -36,9 +36,6 @@ spawn(function()
 if(game.CoreGui:FindFirstChild("uiui") ~= nil) then game.CoreGui.uiui:Destroy() end
 if(game.CoreGui:FindFirstChild("uilibrary") ~= nil) then game.CoreGui.uilibrary:Destroy() end
 if(game.CoreGui:FindFirstChild("uiwindow") ~= nil) then game.CoreGui.uiwindow:Destroy() end
-for i, v in pairs(game.CoreGui:GetChildren()) do
-if(v:FindFirstChild("HiI'mSexyDon'tTouchMePls")) then v:Destroy() end
-end
 end)
 end)
 
@@ -70,11 +67,11 @@ getfenv().humcon = char.Humanoid.Changed:Connect(function()
 end)
 end)
 
-
-spawn(function()
+getfenv().count = getfenv().count or 8
+coroutine.wrap(function()
 while wait() and getfenv().toggle do
 spawn(function()
-getfenv().count = getfenv().count or 8
+
 
 if(getfenv().grind) then
 local lp = game:GetService("Players").LocalPlayer
